@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TK Čelákovice — návrhy webu</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo/tkc-znak.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --inkoust:#141312;--grafit:#201E1C;--papir:#F6F1E7;--karta:#FFFDF8;
+  --oranzova:#F59A3F;--oranzova-tm:#A64F17;
+  --text:#1A1714;--tlumeny:#6E665C;--linka:#E4DCCE;--jemna:#EDE6D9;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--papir);color:var(--text);font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums tabular-nums}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1220px;margin:0 auto;padding:0 32px}
+
+/* úvod */
+.top{background:var(--inkoust);color:#F3EEE6;position:relative;overflow:hidden}
+.top::before{content:"";position:absolute;right:-180px;top:-120px;width:640px;height:640px;border-radius:50%;
+  border:1px solid rgba(245,154,63,.16);pointer-events:none}
+.top::after{content:"";position:absolute;right:-60px;top:0;width:400px;height:400px;border-radius:50%;
+  border:1px solid rgba(243,238,230,.07);pointer-events:none}
+.top .wrap{position:relative;z-index:1;padding-top:52px;padding-bottom:64px}
+.logo{width:150px;height:auto;margin-bottom:40px}
+.top h1{font-size:clamp(40px,6.2vw,80px);font-weight:800;line-height:1.04;letter-spacing:-.025em;max-width:15ch}
+.top h1 span{color:var(--oranzova)}
+.lead{max-width:740px;font-size:18px;color:rgba(243,238,230,.74);margin-top:22px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 34px;margin-top:30px;font-size:14px;color:rgba(243,238,230,.6)}
+.meta b{color:#F3EEE6;font-weight:600}
+
+/* karty variant */
+main{padding:64px 0 96px}
+main h2{font-size:15px;font-weight:700;letter-spacing:.02em;margin-bottom:22px;color:var(--tlumeny)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.card{background:var(--karta);border:1px solid var(--linka);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.card:hover,.card:focus-visible{transform:translateY(-6px);border-color:#D3C8B6;box-shadow:0 40px 70px -46px rgba(20,19,18,.6)}
+.card:focus-visible{outline:2px solid var(--inkoust);outline-offset:3px}
+.thumb{aspect-ratio:16/10;background:var(--jemna);position:relative;overflow:hidden;border-bottom:1px solid var(--linka)}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s ease}
+.card:hover .thumb img{transform:scale(1.03)}
+.num{position:absolute;left:14px;bottom:14px;background:rgba(20,19,18,.86);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;
+  padding:5px 10px;border-radius:100px}
+.card-b{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+.card-b h3{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:6px}
+.card-b .sub{font-size:14px;font-weight:600;color:var(--oranzova-tm);margin-bottom:14px}
+.card-b p{font-size:15px;color:var(--tlumeny)}
+.card-b p b{color:var(--text);font-weight:600}
+.sw{display:flex;gap:8px;margin-top:22px}
+.sw span{width:28px;height:28px;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(20,19,18,.14)}
+.open{margin-top:auto;padding-top:24px;font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+.open::after{content:"→";color:var(--oranzova-tm);transition:transform .3s}
+.card:hover .open::after{transform:translateX(4px)}
+
+/* panely */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:72px}
+.panel{background:var(--karta);border:1px solid var(--linka);border-radius:18px;padding:32px 34px}
+.panel h2{font-size:24px;font-weight:800;letter-spacing:-.015em;color:var(--text);margin-bottom:16px}
+.panel ul{list-style:none;display:grid;gap:12px}
+.panel li{position:relative;padding-left:22px;font-size:15px;color:var(--tlumeny)}
+.panel li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--oranzova)}
+.panel.q li::before{background:var(--inkoust)}
+.panel li b{color:var(--text);font-weight:600}
+
+footer{border-top:1px solid var(--linka);padding:28px 0;font-size:13.5px;color:var(--tlumeny)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+@media (max-width:860px){.two{grid-template-columns:1fr}}
+@media (max-width:680px){
+  .wrap{padding:0 20px}
+  .top .wrap{padding-top:40px;padding-bottom:48px}
+  .logo{width:120px;margin-bottom:30px}
+  .cards{grid-template-columns:1fr}
+  .panel{padding:26px 24px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <img class="logo" src="assets/logo/tkc-logo.svg" alt="TK Čelákovice" width="404" height="300">
+    <h1>Nový web pro <span>TK Čelákovice</span></h1>
+    <p class="lead">Dva návrhy úvodní stránky. Obsah mají stejný, liší se náladou a hlavním nápadem. První provede
+      rekonstrukcí dvorců v roce 2025, druhý cestou klubu od roku 1930 ke stému výročí v roce 2030.
+      Klikněte na kartu a projděte si návrh celý, klidně i na mobilu.</p>
+    <div class="meta">
+      <span>Areál: <b>6 antukových dvorců u Labe</b></span>
+      <span>Barvy: <b>oranžová a černá z klubového loga</b></span>
+      <span>Doména: <b>tkcelakovice.cz</b></span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h2>Dva návrhy úvodní stránky</h2>
+    <div class="cards">
+      <a class="card" href="01-grafit.html">
+        <div class="thumb"><span class="num">01</span><img src="nahled-01.jpg" alt="Náhled návrhu 01 Grafit" width="960" height="600"></div>
+        <div class="card-b">
+          <h3>Grafit</h3>
+          <div class="sub">Tmavá moderní · rok 2025 na časové ose</div>
+          <p>Večerní a sebevědomá, oranžová v ní svítí jako světlo nad dvorci. <b>Časová osa rekonstrukce</b>
+            vede od prvních prací v březnu 2025 až k novým čarám na antuce. Stačí táhnout jezdcem.</p>
+          <div class="sw"><span style="background:#0F0F0E"></span><span style="background:#201E1C"></span><span style="background:#F59A3F"></span><span style="background:#F3EEE6"></span></div>
+          <span class="open">Otevřít návrh</span>
+        </div>
+      </a>
+      <a class="card" href="02-stoleti.html">
+        <div class="thumb"><span class="num">02</span><img src="nahled-02.jpg" alt="Náhled návrhu 02 Století" width="960" height="600"></div>
+        <div class="card-b">
+          <h3>Století</h3>
+          <div class="sub">Světlá klasická · sto let na jedné ose</div>
+          <p>Klidná a vznešená jako klubová kronika. <b>Pravítko sta let</b> od založení LTK 1930 po rok 2030
+            ukáže milníky klubu a odpočítává dny do stých narozenin.</p>
+          <div class="sw"><span style="background:#F6F1E7"></span><span style="background:#1A1714"></span><span style="background:#E2853A"></span><span style="background:#FFFDF8"></span></div>
+          <span class="open">Otevřít návrh</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="two">
+      <section class="panel">
+        <h2>Společné pro oba návrhy</h2>
+        <ul>
+          <li><b>Rezervace dvorců online</b> jedním tlačítkem, k tomu telefony, otevírací doba a hlavní pravidla hracího řádu.</li>
+          <li><b>Ceník</b> pronájmu pro nečleny i členských příspěvků, vstup do klubu a brigádní hodiny.</li>
+          <li>Areál, Tenisová akademie a <b>letní kempy</b>, aktuality, výbor a historie klubu.</li>
+          <li><b>Klubové logo</b> překreslené do ostrého vektoru, jak celý ovál, tak samotný monogram TK.</li>
+          <li>Skutečné fotky areálu, včetně nových dronových snímků Davida Holuba.</li>
+          <li>Funguje na počítači, tabletu i mobilu.</li>
+        </ul>
+      </section>
+      <section class="panel q">
+        <h2>Co ještě potřebujeme ověřit</h2>
+        <ul>
+          <li><b>Ceník</b> na současném webu platí od roku 2015 (pronájem 240 Kč za hodinu). Platí pořád?
+            A je příspěvek školičky do 10 let opravdu 100 Kč?</li>
+          <li><b>Zimní sezóna</b> 18. 10. 2026 – 2. 4. 2027: kde a kdy se v zimě hraje a platí i v zimě otevírací doba Po–Ne 9:00–11:30 a 16:00–22:00?</li>
+          <li><b>Fotky:</b> souhlasí David Holub s použitím dronových snímků? A máte fotky hráčů, trenérů nebo turnajů?</li>
+          <li><b>Akademie:</b> má mít na webu klubu vlastní sekci, nebo jen odkaz na svůj web?</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tenisový klub Čelákovice, spolek · U Kapličky 1705, 250 88 Čelákovice</span>
+    <span>Návrhy nového webu · říjen 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

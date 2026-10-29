@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TK Čelákovice — tenisový klub u Labe</title>
+<meta name="description" content="Tenisový klub Čelákovice: šest antukových dvorců v klidném zeleném areálu u Labe, 30 minut z Prahy. Rezervace online, ceník, tenisová akademie a kempy.">
+<meta name="theme-color" content="#0F0F0E">
+<link rel="icon" href="assets/logo/tkc-znak.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Hanken Grotesk jako statické řezy z Google Fonts: WebKit na Windows u variabilního souboru nekreslí tloušťky */
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/hankengrotesk/v12/ieVq2YZDLWuGJpnzaiwFXS9tYvBRzyFLlZg_f_Nc7WZa4g.woff) format("woff")}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/hankengrotesk/v12/ieVq2YZDLWuGJpnzaiwFXS9tYvBRzyFLlZg_f_Ncs2Za4g.woff) format("woff")}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/hankengrotesk/v12/ieVq2YZDLWuGJpnzaiwFXS9tYvBRzyFLlZg_f_NcgWZa4g.woff) format("woff")}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/hankengrotesk/v12/ieVq2YZDLWuGJpnzaiwFXS9tYvBRzyFLlZg_f_NcbWFa4g.woff) format("woff")}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/hankengrotesk/v12/ieVq2YZDLWuGJpnzaiwFXS9tYvBRzyFLlZg_f_NcVGFa4g.woff) format("woff")}
+:root{
+  --bg:#0F0F0E; --s1:#171615; --s2:#201E1C;
+  --line:rgba(243,238,230,.10); --line2:rgba(243,238,230,.20);
+  --tx:#F3EEE6; --tx2:#CFC9BF; --mut:#A39E95;
+  --or:#F59A3F; --or2:#D9792A; --ball:#D4DE3F;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --g:clamp(20px,4vw,56px); --max:1290px; --hh:72px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--bg);color-scheme:dark;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html.zamek{overflow:hidden}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--or);outline-offset:3px;border-radius:2px}
+::selection{background:var(--or);color:var(--bg)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-9999px;top:12px;z-index:100;background:var(--or);color:var(--bg);padding:10px 14px;font-weight:600}
+.skip:focus{left:16px}
+.wrap{width:100%;max-width:calc(var(--max) + 2*var(--g));margin:0 auto;padding:0 var(--g)}
+.num{font-family:var(--mono);font-variant-numeric:lining-nums tabular-nums}
+h1,h2,h3{margin:0;color:var(--tx);font-weight:600}
+h2{font-size:clamp(34px,4.1vw,60px);line-height:1.06;letter-spacing:-.032em;max-width:17ch}
+h3{font-size:clamp(20px,1.6vw,24px);line-height:1.25;letter-spacing:-.015em}
+p{margin:0}
+.lead{font-size:clamp(18px,1.4vw,21px);line-height:1.55;color:var(--tx2);max-width:36em}
+.pozn{margin-top:16px;color:var(--mut);font-size:16px;max-width:36em}
+.odkaz{color:var(--tx);border-bottom:1px solid var(--line2);transition:color .3s var(--ease),border-color .3s var(--ease)}
+.odkaz:hover{color:var(--or);border-color:var(--or)}
+.sekce{padding:clamp(80px,9.5vw,136px) 0;border-top:1px solid var(--line)}
+.sekce--s1{background:var(--s1)}
+section[id]{scroll-margin-top:var(--hh)}
+.hlavicka-sekce{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:28px 64px;align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+
+/* tlačítka */
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px;border-radius:3px;border:1px solid var(--or);background:var(--or);color:#0F0F0E;font-weight:600;font-size:16px;letter-spacing:.005em;white-space:nowrap;transition:background .35s var(--ease),border-color .35s var(--ease),color .35s var(--ease)}
+.btn:hover{background:var(--or2);border-color:var(--or2)}
+.btn svg{width:13px;height:13px;flex:none}
+.btn--velke{min-height:62px;padding:0 30px;font-size:18px}
+.btn--sm{min-height:40px;padding:0 16px;font-size:15px}
+.btn--obrys{background:transparent;color:var(--tx);border-color:var(--line2)}
+.btn--obrys:hover{background:transparent;border-color:var(--or);color:var(--or)}
+
+/* hlavička */
+.hlava{position:fixed;inset:0 0 auto;z-index:50;height:var(--hh);border-bottom:1px solid transparent;transition:background .45s var(--ease),border-color .45s var(--ease)}
+.hlava.scrolled,.menu-otevrene .hlava{background:rgba(15,15,14,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.hlava__in{height:100%;display:flex;align-items:center;gap:32px}
+.znacka{display:flex;align-items:center;gap:14px;flex:none}
+.znacka img{width:68px;height:30px}
+.znacka__jm{display:block;font-weight:600;font-size:17px;letter-spacing:-.01em;line-height:1.1}
+.znacka__od{display:block;margin-top:3px;font:400 12px/1.2 var(--mono);color:var(--mut)}
+.menu{display:flex;gap:30px;margin-left:auto}
+.menu a{position:relative;padding:6px 0;font-size:15px;color:var(--tx2);transition:color .3s var(--ease)}
+.menu a:hover{color:var(--tx)}
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.menu a:hover::after{transform:scaleX(1)}
+.menu-btn{display:none;align-items:center;gap:12px;height:44px;padding:0 2px 0 10px;background:none;border:0;cursor:pointer;font:500 15px/1 var(--sans)}
+.menu-btn i{position:relative;display:block;width:22px;height:10px}
+.menu-btn i::before,.menu-btn i::after{content:"";position:absolute;left:0;right:0;height:1.5px;background:currentColor;transition:transform .45s var(--ease),top .45s var(--ease)}
+.menu-btn i::before{top:0}.menu-btn i::after{top:8.5px}
+.menu-btn[aria-expanded="true"] i::before{top:4.25px;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] i::after{top:4.25px;transform:rotate(-45deg)}
+.mmenu{position:fixed;inset:0;z-index:40;background:var(--bg);padding:calc(var(--hh) + 20px) var(--g) 40px;display:flex;flex-direction:column;gap:28px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility 0s linear .45s}
+.mmenu.open{opacity:1;visibility:visible;transition:opacity .45s var(--ease)}
+.mmenu nav{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.mmenu nav a{padding:13px 0;border-bottom:1px solid var(--line);font-size:27px;font-weight:500;letter-spacing:-.02em}
+.mmenu .btn{align-self:flex-start}
+.mmenu__tel{font:400 18px/1.5 var(--mono);color:var(--tx2)}
+
+/* úvod */
+.hero{padding-top:calc(var(--hh) + clamp(14px,3vh,36px))}
+.hero__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,4.4vw,64px);align-items:center;padding-left:max(var(--g),calc((100% - var(--max)) / 2))}
+.hero__text{padding:24px 0;max-width:580px}
+.hero h1{font-size:clamp(52px,min(8.4vw,15.5vh),136px);line-height:.94;letter-spacing:-.048em;font-weight:600;margin:0 0 clamp(20px,3.2vh,34px)}
+.hero h1 .tecka{color:var(--or)}
+.hero .lead{max-width:30em}
+.hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;margin-top:clamp(26px,4.2vh,44px)}
+.tel{display:flex;flex-direction:column;gap:2px}
+.tel span{font-size:13px;color:var(--mut)}
+.tel a{font:400 19px/1.3 var(--mono);transition:color .3s}
+.tel a:hover{color:var(--or)}
+.hero__foto{margin:0;min-width:0}
+.hero__foto img{width:100%;aspect-ratio:1.42;max-height:calc(100svh - var(--hh) - 200px);min-height:380px;object-fit:cover;object-position:92% 50%;background:var(--s1)}
+.hero__foto figcaption{display:flex;justify-content:space-between;gap:16px;padding:12px var(--g) 0 0;font:400 12px/1.4 var(--mono);color:var(--mut)}
+.fakta{list-style:none;margin:clamp(34px,5.5vh,60px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.fakta li{padding:22px 24px 4px 0}
+.fakta li+li{padding-left:24px;border-left:1px solid var(--line)}
+.fakta b{display:block;font:300 clamp(25px,3.2vw,46px)/1.05 var(--mono);letter-spacing:-.03em;white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+.fakta span{display:block;margin-top:8px;font-size:15px;color:var(--mut)}
+
+/* rezervace */
+.rez{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px clamp(40px,7vw,112px);align-items:start}
+.rez .lead{margin:22px 0 34px}
+.rez__kontakt{display:flex;flex-wrap:wrap;gap:24px 56px;margin-top:40px;padding-top:26px;border-top:1px solid var(--line)}
+.rez__kontakt small{display:block;margin-bottom:6px;font-size:13px;color:var(--mut)}
+.rez__kontakt a{font:400 21px/1.45 var(--mono);transition:color .3s}
+.rez__kontakt a:hover{color:var(--or)}
+.hodiny{background:var(--s1);border:1px solid var(--line);border-radius:3px;padding:26px 28px 22px}
+.hodiny__titul{display:flex;justify-content:space-between;gap:16px;font-size:15px;color:var(--mut)}
+.hodiny__cas{margin-top:10px;font:400 clamp(19px,1.7vw,24px)/1.35 var(--mono);letter-spacing:-.01em}
+.hodiny__cas span{color:var(--mut);padding:0 .3em}
+.pas{position:relative;height:8px;margin:22px 0 10px;background:rgba(243,238,230,.07);border-radius:1px}
+.pas i{position:absolute;top:0;bottom:0;background:var(--or);border-radius:1px}
+.pas__osa{position:relative;height:14px;font:400 11px/1 var(--mono);color:var(--mut)}
+.pas__osa span{position:absolute;top:0;transform:translateX(-50%)}
+.pas__osa span:first-child{transform:none}.pas__osa span:last-child{transform:translateX(-100%)}
+.hodiny__zima{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--mut)}
+.pravidla__h{margin-top:40px;font-size:17px;letter-spacing:0}
+.pravidla{list-style:none;margin:14px 0 18px;padding:0;border-top:1px solid var(--line)}
+.pravidla li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px;color:var(--tx2)}
+.pravidla li::before{content:"";width:12px;height:1px;margin-top:.8em;background:var(--or)}
+
+/* rok 2025 */
+.r25{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);grid-template-areas:"scena panel" "osa osa";gap:0 clamp(28px,3.4vw,48px)}
+.scena{grid-area:scena;position:relative;aspect-ratio:16/9;background:#0A0A09;overflow:hidden;border-radius:3px}
+.scena img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;opacity:0;transition:opacity .7s ease}
+.scena img.on{opacity:1;z-index:2}
+.scena img.pod{opacity:1;z-index:1;transition:none}
+.panel{grid-area:panel;display:flex;flex-direction:column;min-width:0;padding-top:4px}
+.panel__datum{font:300 clamp(32px,3.3vw,48px)/1.05 var(--mono);letter-spacing:-.035em;white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+.panel__den{margin-top:12px;font:400 14px/1.4 var(--mono);color:var(--mut)}
+.panel__den b{font-weight:500;color:var(--or)}
+.panel__popis{margin-top:22px;font-size:19px;line-height:1.5;max-width:22em}
+.panel__foto{margin-top:8px;font:400 12px/1.4 var(--mono);color:var(--mut);min-height:1.4em}
+.panel__txt.fade{animation:txtIn .6s ease both}
+@keyframes txtIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.panel__auto{display:flex;align-items:center;gap:14px;margin-top:20px}
+.panel__auto[hidden]{display:none}
+.panel__bar{position:relative;flex:1;height:1px;background:var(--line2);overflow:hidden}
+.panel__bar i{position:absolute;inset:0;background:var(--or);transform-origin:left;animation:plnit 2.8s linear both}
+@keyframes plnit{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.panel__auto button{background:none;border:0;padding:6px 0;cursor:pointer;font:400 12px/1.2 var(--mono);color:var(--mut);text-decoration:underline;text-underline-offset:3px}
+.panel__ovl{display:flex;align-items:center;gap:10px;margin-top:26px}
+.zastavit{display:none;margin-left:8px;padding:6px 0;background:none;border:0;cursor:pointer;font:400 12.5px/1.3 var(--mono);color:var(--tx2);text-decoration:underline;text-underline-offset:3px}
+.hraje .zastavit{display:inline-block}
+.hraje .napoveda{display:none}
+.scena__bar{position:absolute;left:0;right:0;bottom:0;z-index:3;height:2px;background:rgba(15,15,14,.4);opacity:0;transition:opacity .6s}
+.scena__bar i{position:absolute;inset:0;background:var(--or);transform:scaleX(0);transform-origin:left}
+.hraje .scena__bar{opacity:1}
+.hraje .scena__bar i{animation:plnit 2.8s linear both}
+.krok{display:grid;place-items:center;width:48px;height:48px;flex:none;background:none;border:1px solid var(--line2);border-radius:3px;cursor:pointer;transition:border-color .3s var(--ease),color .3s var(--ease),opacity .3s}
+.krok svg{width:16px;height:16px}
+.krok:hover{border-color:var(--or);color:var(--or)}
+.krok[aria-disabled="true"]{opacity:.32;cursor:default;border-color:var(--line2);color:var(--tx)}
+.napoveda{margin-left:8px;font-size:13px;line-height:1.4;color:var(--mut)}
+.osa{grid-area:osa;position:relative;margin-top:40px;user-select:none;-webkit-user-select:none}
+.osa__mesice{position:relative;height:18px}
+.osa__mesice span{position:absolute;top:0;padding-left:7px;border-left:1px solid var(--line2);font:400 12px/1.3 var(--mono);color:var(--mut);white-space:nowrap}
+.osa__mesice .kr{display:none}
+.kolej{position:relative;height:46px;cursor:pointer;touch-action:pan-y}
+.kolej::before{content:"";position:absolute;left:0;width:88%;top:50%;height:1px;background:var(--line2)}
+.kolej__po{position:absolute;left:88%;right:0;top:50%;border-top:1px dashed var(--line2)}
+.kolej__fill{position:absolute;left:0;top:50%;height:2px;margin-top:-1px;width:0;background:var(--or);transition:width .9s var(--ease)}
+.kolej__tick{position:absolute;top:50%;width:1px;height:12px;margin-top:-6px;background:var(--mut);transform:translateX(-50%);transition:height .5s var(--ease),margin .5s var(--ease),background .5s}
+.kolej__tick.prosel{background:var(--or)}
+.kolej__tick.akt{height:24px;margin-top:-12px}
+.jezdec{position:absolute;top:50%;left:0;z-index:2;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;background:var(--bg);border:2px solid var(--or);box-shadow:0 0 0 7px rgba(245,154,63,.13);cursor:grab;touch-action:none;transition:left .9s var(--ease),box-shadow .3s}
+.jezdec::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--ball)}
+.jezdec:hover{box-shadow:0 0 0 10px rgba(245,154,63,.18)}
+.jezdec:focus-visible{outline-offset:6px;border-radius:50%}
+.tahne .jezdec,.tahne .kolej__fill{transition:none}
+.tahne .jezdec{cursor:grabbing}
+.spojky{display:block;width:100%;height:40px;overflow:visible}
+.spojky line{stroke:rgba(243,238,230,.16);stroke-width:1;transition:stroke .5s}
+.spojky line.akt{stroke:var(--or)}
+.zastavky{display:grid;grid-template-columns:repeat(13,minmax(0,1fr))}
+.zastavky button{position:relative;min-height:46px;padding:10px 2px 6px;background:none;border:0;cursor:pointer;font:400 12px/1.25 var(--mono);color:var(--mut);text-align:center;transition:color .4s}
+.zastavky button::before{content:"";position:absolute;left:50%;top:0;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--line2);transition:background .4s}
+.zastavky button:hover{color:var(--tx)}
+.zastavky button[aria-current="true"]{color:var(--tx)}
+.zastavky button[aria-current="true"]::before{background:var(--or)}
+.podekovani{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:auto;padding-top:22px;border-top:1px solid var(--line)}
+.panel__ovl+.podekovani{margin-top:auto}
+.panel>.podekovani{margin-top:auto}
+.podekovani p{font-size:15px;line-height:1.5;color:var(--mut);max-width:30em}
+.podekovani__loga{display:flex;gap:10px}
+.chip{display:block;height:62px;padding:6px 10px;background:#fff;border-radius:3px;overflow:hidden}
+.chip img{width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.chip--nsa{width:152px}
+.chip--mesto{width:66px}
+
+/* areál */
+.areal{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:56px clamp(48px,7vw,112px);align-items:start}
+.areal .lead{margin-top:24px}
+.spec{margin:40px 0 0;border-top:1px solid var(--line)}
+.spec div{display:grid;grid-template-columns:140px minmax(0,1fr);gap:20px;padding:15px 0;border-bottom:1px solid var(--line)}
+.spec dt{font:400 13px/1.7 var(--mono);color:var(--mut)}
+.spec dd{margin:0}
+.fota{display:grid;grid-template-columns:1fr 1fr;gap:28px 14px}
+.fota figure{margin:0;min-width:0}
+.fota .velka{grid-column:1 / -1}
+.fota img{width:100%;object-fit:cover;border-radius:2px;background:var(--s1)}
+.fota .velka img{aspect-ratio:913/580}
+.fota .mala img{aspect-ratio:4/3}
+figcaption{margin-top:10px;font:400 12px/1.45 var(--mono);color:var(--mut)}
+
+/* ceník */
+.cenik{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px clamp(40px,6vw,96px);align-items:start}
+.hodina{padding-top:24px;border-top:1px solid var(--or)}
+.hodina__cislo{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;font-family:var(--mono);font-variant-numeric:lining-nums tabular-nums}
+.hodina__cislo b{font-weight:300;font-size:clamp(88px,9.6vw,136px);line-height:.92;letter-spacing:-.06em}
+.hodina__cislo span{font-size:18px;color:var(--mut)}
+.hodina__txt{margin-top:18px;color:var(--tx2)}
+.dalsi{margin:44px 0 0;border-top:1px solid var(--line2)}
+.dalsi div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+.dalsi dt{color:var(--tx2);font-size:16px}
+.dalsi dt small{display:block;font-size:13px;color:var(--mut)}
+.dalsi dd{margin:0;font:400 18px/1.2 var(--mono);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+.dalsi dd span{color:var(--mut);font-size:14px}
+.matice{width:100%;border-collapse:collapse;font-variant-numeric:lining-nums tabular-nums}
+.matice th,.matice td{padding:15px 18px 15px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:baseline}
+.matice thead th{padding-top:0;padding-bottom:12px;border-bottom:1px solid var(--line2);font:400 11px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
+.matice tbody th{font-weight:500;font-size:16px}
+.matice .roz{font-size:15px;color:var(--tx2)}
+.matice .brig{font:400 13px/1.4 var(--mono);color:var(--mut);white-space:nowrap}
+.matice .kc{padding-right:0;text-align:right;font:400 19px/1.2 var(--mono);white-space:nowrap}
+.matice thead .kc{font-size:11px}
+.matice .vstup th,.matice .vstup td{border-bottom:0;padding-top:20px}
+.matice .vstup .kc{color:var(--or);font-size:22px}
+.matice .vstup{border-top:1px solid var(--line2)}
+.cenik__pozn{margin-top:28px;font-size:15px;color:var(--mut);max-width:44em}
+.cenik__pozn+.cenik__pozn{margin-top:10px}
+.cenik__plati{margin-top:22px;font:400 13px/1.5 var(--mono);color:var(--mut)}
+
+/* akademie */
+.akad{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px clamp(40px,6vw,96px);align-items:start}
+.akad .lead{margin-top:24px}
+.akad__odkazy{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:34px}
+.akad__odkazy .tel a{font-size:21px}
+.treneri{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px;border-top:1px solid var(--line)}
+.trener{padding:22px 0 24px;border-bottom:1px solid var(--line)}
+.trener__kval{font:400 12.5px/1.4 var(--mono);color:var(--or)}
+.trener h3{margin-top:10px;font-size:22px}
+.trener p:last-child{margin-top:6px;font-size:15px;color:var(--mut)}
+.kempy{margin-top:clamp(72px,8vw,112px);scroll-margin-top:calc(var(--hh) + 20px)}
+.kempy__hl{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:20px 64px;align-items:end;margin-bottom:30px}
+.kempy__hl h3{font-size:clamp(28px,2.9vw,42px);line-height:1.08;letter-spacing:-.03em}
+.kempy__hl p{color:var(--tx2)}
+.dlazdice{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.dlazdice li{padding:22px 22px 20px;background:var(--s2);border:1px solid var(--line);border-radius:3px}
+.dlazdice .k{display:block;font:400 12px/1.3 var(--mono);color:var(--mut)}
+.dlazdice .d{display:block;margin-top:26px;font:300 clamp(26px,2.6vw,38px)/1 var(--mono);letter-spacing:-.04em;white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+.dlazdice .r{display:block;margin-top:12px;font:400 13px/1.4 var(--mono);color:var(--mut)}
+.kempy__info{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:28px clamp(40px,6vw,96px);margin-top:36px;align-items:start}
+.kempy__info dl{margin:0;border-top:1px solid var(--line)}
+.kempy__info dl div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+.kempy__info dt{font:400 13px/1.7 var(--mono);color:var(--mut)}
+.kempy__info dd{margin:0;color:var(--tx2)}
+.kempy__info dd b{font:400 19px/1.3 var(--mono);color:var(--tx)}
+.kempy__info dd a{border-bottom:1px solid var(--line2)}
+.kempy__info dd a:hover{color:var(--or);border-color:var(--or)}
+.kempy__info figure{margin:0}
+.kempy__info img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px}
+
+/* klub */
+.klub{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px clamp(40px,6vw,96px);align-items:start}
+.klub__znak{position:sticky;top:calc(var(--hh) + 40px)}
+.klub__znak img{width:min(100%,250px)}
+.klub__sloupce{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;margin-top:30px;color:var(--tx2)}
+.memorial{margin-top:44px;padding:26px 28px;background:var(--s1);border:1px solid var(--line);border-radius:3px}
+.memorial p{margin-top:10px;color:var(--tx2)}
+.vybor__h{margin-top:44px;font-size:17px;letter-spacing:0}
+.vybor{margin:14px 0 0;border-top:1px solid var(--line)}
+.vybor div{display:grid;grid-template-columns:170px minmax(0,1fr);gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+.vybor dt{font:400 13px/1.7 var(--mono);color:var(--mut)}
+.vybor dd{margin:0}
+.oslavy{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:44px 0 0;max-width:660px}
+.oslavy img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px}
+.oslavy figcaption{grid-column:1 / -1;margin-top:0}
+
+/* aktuality */
+.zpravy{list-style:none;margin:clamp(36px,4vw,56px) 0 0;padding:0;border-top:1px solid var(--line2)}
+.zpravy li{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,5fr);gap:10px 40px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line)}
+.zpravy time{font:400 14px/1.5 var(--mono);color:var(--or);font-variant-numeric:lining-nums tabular-nums}
+.zpravy h3{font-size:21px}
+.zpravy p{color:var(--mut)}
+.zpravy p a{color:var(--tx);border-bottom:1px solid var(--line2);transition:color .3s,border-color .3s}
+.zpravy p a:hover{color:var(--or);border-color:var(--or)}
+
+/* partneři */
+.partneri{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px clamp(40px,6vw,96px);align-items:start}
+.partneri .lead{margin-top:24px}
+.karty{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:16px}
+.karty figure{margin:0}
+.karta{display:flex;align-items:center;justify-content:center;height:220px;padding:20px;background:#fff;border-radius:3px}
+.karta img{width:auto;max-height:100%;object-fit:contain}
+.karty figcaption{margin-top:14px;font:400 15px/1.5 var(--sans);color:var(--mut)}
+.karty figcaption b{display:block;font-weight:600;color:var(--tx)}
+
+/* kontakt */
+.kontakt{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,480px);gap:48px clamp(40px,6vw,96px);align-items:start}
+.kontakt__adr{margin-top:28px;font-size:clamp(26px,2.6vw,38px);line-height:1.2;letter-spacing:-.02em;font-weight:500}
+.kontakt__mapy{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.kontakt__radky{display:grid;grid-template-columns:auto auto minmax(0,1fr);margin:44px 0 0;border-top:1px solid var(--line)}
+.kontakt__radky div{padding:18px 28px 0 0}
+.kontakt__radky div+div{padding-left:28px;border-left:1px solid var(--line)}
+.kontakt__radky dt{font-size:13px;color:var(--mut)}
+.kontakt__radky dd{margin:6px 0 0;font:400 17px/1.55 var(--mono);overflow-wrap:break-word}
+.kontakt__radky dd.txt{font-family:var(--sans)}
+.kontakt__radky a{transition:color .3s}
+.kontakt__radky a:hover{color:var(--or)}
+.kontakt__foto{margin:0}
+.kontakt__foto img{width:100%;aspect-ratio:963/641;border-radius:2px}
+
+/* patička */
+.pata{padding:64px 0 36px;border-top:1px solid var(--line);font-size:14px;color:var(--mut)}
+.pata__grid{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:32px 56px;align-items:start}
+.pata__grid img{width:120px;height:auto}
+.pata__jm{color:var(--tx);font-weight:600;font-size:15px;margin-bottom:6px}
+.pata a:hover{color:var(--or)}
+.pata__copy{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font:400 12px/1.6 var(--mono)}
+
+/* odkrývání */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:1180px){
+  .osa__mesice .dl{display:none}
+  .osa__mesice .kr{display:inline}
+  .osa__mesice>span:first-child{display:none}
+}
+@media (max-width:1100px) and (min-width:901px){
+  .r25{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+  .scena{align-self:start}
+}
+@media (max-width:1100px){
+  .cenik{grid-template-columns:1fr}
+  .hodina{max-width:620px}
+}
+@media (max-width:1080px){
+  .menu{display:none}
+  .menu-btn{display:inline-flex}
+  .hlava .btn{margin-left:auto}
+}
+@media (max-width:1000px){
+  .fakta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fakta li:nth-child(3){padding-left:0;border-left:0}
+  .fakta li{padding-bottom:20px;border-bottom:1px solid var(--line)}
+}
+@media (max-width:900px){
+  :root{--hh:64px}
+  .hero__grid{grid-template-columns:1fr;padding-left:0;gap:20px}
+  .hero__foto{order:-1}
+  .hero__foto img{aspect-ratio:16/10;max-height:none;min-height:0;object-position:100% 50%}
+  .hero__foto figcaption{padding:10px var(--g) 0}
+  .hero__text{padding:10px var(--g) 0;max-width:none}
+  .hlavicka-sekce,.rez,.areal,.akad,.klub,.partneri,.kontakt,.kempy__hl,.kempy__info{grid-template-columns:1fr}
+  .r25{grid-template-columns:1fr;grid-template-areas:"scena" "osa" "panel"}
+  .osa{margin-top:28px}
+  .panel{padding-top:28px}
+  .panel__ovl{margin-top:0}
+  .klub__znak{position:static}
+  .klub__znak img{width:180px}
+  .dlazdice{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .zpravy li{grid-template-columns:1fr;gap:6px}
+  .pata__grid{grid-template-columns:1fr 1fr}
+  .areal .fota{max-width:560px}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .scena{aspect-ratio:4/3}
+  .spojky,.zastavky{display:none}
+  .osa{padding-bottom:8px}
+  .treneri,.klub__sloupce{grid-template-columns:1fr}
+  .kontakt__radky{grid-template-columns:1fr}
+  .kontakt__radky div,.kontakt__radky div+div{padding:14px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .spec div,.vybor div,.kempy__info dl div{grid-template-columns:1fr;gap:2px}
+  .podekovani{flex-direction:column;align-items:flex-start}
+  .karty{grid-template-columns:1fr}
+  .karta{height:200px}
+  .matice thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .matice,.matice tbody,.matice tr,.matice th,.matice td{display:block}
+  .matice tr{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;row-gap:3px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .matice th,.matice td,.matice .vstup th,.matice .vstup td{padding:0;border:0}
+  .matice tbody th,.matice .roz,.matice .brig{grid-column:1}
+  .matice .kc{grid-column:2;grid-row:1 / span 3}
+  .matice .nic{display:none}
+  .matice .brig{white-space:normal}
+  .matice .brig::before{content:"Odečet za brigády: "}
+  .matice .vstup{padding-top:18px}
+  .pata__grid{grid-template-columns:1fr}
+  .memorial{padding:22px 20px}
+}
+@media (max-width:560px){
+  .hlava .btn{display:none}
+  .menu-btn{margin-left:auto}
+  .dlazdice{grid-template-columns:1fr;gap:10px}
+  .dlazdice li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;padding:16px 18px}
+  .dlazdice .d{order:-1;margin:0;font-size:28px}
+  .dlazdice .k{text-align:right}
+  .dlazdice .r{flex-basis:100%;margin-top:2px}
+  .oslavy{grid-template-columns:1fr 1fr}
+  .oslavy figure:nth-child(3){display:none}
+  .napoveda{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none;transition:none}
+  .scena img,.jezdec,.kolej__fill,.kolej__tick,.spojky line{transition:none}
+  .panel__txt.fade{animation:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+
+<header class="hlava" id="hlava">
+  <div class="wrap hlava__in">
+    <a class="znacka" href="#top" aria-label="TK Čelákovice, na začátek stránky">
+      <img src="assets/logo/tkc-znak-negativ.svg" width="68" height="30" alt="">
+      <span><span class="znacka__jm">TK Čelákovice</span><span class="znacka__od">od 1930</span></span>
+    </a>
+    <nav class="menu" aria-label="Hlavní menu">
+      <a href="#areal">Areál</a>
+      <a href="#cenik">Ceník</a>
+      <a href="#akademie">Akademie</a>
+      <a href="#klub">Klub</a>
+      <a href="#aktuality">Aktuality</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn btn--sm" href="https://www.rogeronline.cz/v2/index.php?klub=75" target="_blank" rel="noopener">Rezervace <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11 11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mmenu"><span class="menu-btn__t">Menu</span><i aria-hidden="true"></i></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mmenu">
+  <nav aria-label="Menu">
+    <a href="#rezervace">Rezervace</a>
+    <a href="#areal">Areál</a>
+    <a href="#cenik">Ceník</a>
+    <a href="#akademie">Akademie</a>
+    <a href="#klub">Klub</a>
+    <a href="#aktuality">Aktuality</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <a class="btn btn--velke" href="https://www.rogeronline.cz/v2/index.php?klub=75" target="_blank" rel="noopener">Rezervovat online <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11 11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+  <p class="mmenu__tel"><a href="tel:+420723025880">723&nbsp;025&nbsp;880</a><br><a href="tel:+420728118923">728&nbsp;118&nbsp;923</a></p>
+</div>
+
+<main id="obsah">
+
+<section class="hero" id="top" aria-labelledby="h-uvod">
+  <div class="hero__grid">
+    <div class="hero__text rv">
+      <h1 id="h-uvod"><span class="sr">Tenisový klub Čelákovice: </span>Antuka<br>u&nbsp;Labe<span class="tecka">.</span></h1>
+      <p class="lead">Tenisový klub Čelákovice. Šest antukových dvorců v klidném zeleném areálu, 30&nbsp;minut z Prahy, s parkováním přímo na místě.</p>
+      <div class="hero__cta">
+        <a class="btn btn--velke" href="https://www.rogeronline.cz/v2/index.php?klub=75" target="_blank" rel="noopener">Rezervovat dvorec <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11 11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <div class="tel"><span>nebo volejte</span><a href="tel:+420723025880">723&nbsp;025&nbsp;880</a></div>
+      </div>
+    </div>
+    <figure class="hero__foto">
+      <img src="assets/foto/dron-podzim.jpg" width="2600" height="1463" fetchpriority="high" alt="Areál TK Čelákovice z dronu: oplocený blok nových antukových dvorců mezi podzimními stromy, vlevo klubovna a starší dvorce">
+      <figcaption><span>Areál po rekonstrukci</span><span>Foto: David Holub</span></figcaption>
+    </figure>
+  </div>
+  <div class="wrap">
+    <ul class="fakta rv">
+      <li><b>6</b><span>antukových dvorců</span></li>
+      <li><b>10&nbsp;000&nbsp;m²</b><span>areál převážně v zeleni</span></li>
+      <li><b>30&nbsp;min</b><span>z Prahy</span></li>
+      <li><b>1930</b><span>rok založení klubu</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sekce" id="rezervace" aria-labelledby="h-rez">
+  <div class="wrap rez">
+    <div class="rv">
+      <h2 id="h-rez">Rezervace dvorců</h2>
+      <p class="lead">Online v systému Roger, nebo telefonicky v otevírací době.</p>
+      <a class="btn btn--velke" href="https://www.rogeronline.cz/v2/index.php?klub=75" target="_blank" rel="noopener">Rezervovat online <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11 11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <div class="rez__kontakt">
+        <div><small>Telefon</small><a href="tel:+420723025880">723&nbsp;025&nbsp;880</a><br><a href="tel:+420728118923">728&nbsp;118&nbsp;923</a></div>
+        <div><small>E-mail</small><a href="mailto:info@tkcelakovice.cz">info@tkcelakovice.cz</a></div>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="hodiny">
+        <p class="hodiny__titul"><span>Rezervace v otevírací době</span><span class="num">Po–Ne</span></p>
+        <p class="hodiny__cas">9:00–11:30<span>·</span>16:00–22:00</p>
+        <div class="pas" aria-hidden="true"><i style="left:7.143%;width:17.857%"></i><i style="left:57.143%;width:42.857%"></i></div>
+        <div class="pas__osa" aria-hidden="true"><span style="left:0">8</span><span style="left:14.286%">10</span><span style="left:28.571%">12</span><span style="left:42.857%">14</span><span style="left:57.143%">16</span><span style="left:71.429%">18</span><span style="left:85.714%">20</span><span style="left:100%">22</span></div>
+        <p class="hodiny__zima">Zimní tenisová sezóna: 18.&nbsp;10.&nbsp;2026 – 2.&nbsp;4.&nbsp;2027</p>
+      </div>
+      <h3 class="pravidla__h">Z hracího řádu</h3>
+      <ul class="pravidla">
+        <li>Před hrou dvorec podle potřeby nastříkejte, po hře ho urovnejte a zameťte.</li>
+        <li>Hru ukončete nejméně 5&nbsp;minut před další hrací jednotkou.</li>
+        <li>Na dvorce jen v tenisovém oblečení a tenisové obuvi.</li>
+        <li>Nečlen musí mít dvorec rezervovaný a pronájem zaplacený předem.</li>
+      </ul>
+      <a class="odkaz" href="https://www.tkcelakovice.cz/images/ostatni/hraci_rad_od_2015.pdf" target="_blank" rel="noopener">Celý hrací řád (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section class="sekce sekce--s1" id="rok-2025" aria-labelledby="h-r25">
+  <div class="wrap">
+    <div class="hlavicka-sekce rv">
+      <h2 id="h-r25">Rok 2025 — čtyři nové dvorce</h2>
+      <div>
+        <p class="lead">Rekonstrukce 4&nbsp;antukových dvorců a sociálního zařízení je dokončená. Fotky z průběhu prací vedou od vybouraného sociálního zařízení v březnu až k hotovým dvorcům s novými čarami v září.</p>
+        <p class="pozn">Tréninky akademie se od 16.&nbsp;6.&nbsp;2025 dočasně přestěhovaly na kurt u Volmanovy vily.</p>
+      </div>
+    </div>
+
+    <div class="r25" id="r25">
+      <div class="scena"><span class="scena__bar" aria-hidden="true"><i></i></span></div>
+      <div class="panel">
+        <div class="panel__txt" aria-live="polite">
+          <p class="panel__datum" id="r25-datum">8.&nbsp;9.&nbsp;2025</p>
+          <p class="panel__den" id="r25-den">den <b>172</b> ze 209</p>
+          <p class="panel__popis" id="r25-popis">Hotové dvorce s novými čarami.</p>
+          <p class="panel__foto" id="r25-foto"></p>
+        </div>
+        <div class="panel__ovl">
+          <button class="krok" id="r25-prev" type="button" aria-label="Předchozí fotka"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="krok" id="r25-next" type="button" aria-label="Další fotka"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <p class="napoveda">Táhněte jezdcem po ose, klikněte na datum nebo použijte šipky ←&nbsp;→</p>
+          <button class="zastavit" id="r25-stop" type="button">Zastavit přehrávání</button>
+        </div>
+        <div class="podekovani">
+          <p>Rekonstrukci podpořily Národní sportovní agentura a Město Čelákovice.</p>
+          <div class="podekovani__loga">
+            <span class="chip chip--nsa"><img src="assets/partneri/nsa-muj-klub-2026.jpg" width="2584" height="1444" loading="lazy" alt="Národní sportovní agentura"></span>
+            <span class="chip chip--mesto"><img src="assets/partneri/mesto-celakovice.jpg" width="379" height="489" loading="lazy" alt="Znak města Čelákovice"></span>
+          </div>
+        </div>
+      </div>
+      <div class="osa">
+        <div class="osa__mesice" aria-hidden="true"></div>
+        <div class="kolej">
+          <span class="kolej__po" aria-hidden="true"></span>
+          <span class="kolej__fill" aria-hidden="true"></span>
+          <div class="jezdec" role="slider" tabindex="0" aria-label="Časová osa rekonstrukce 2025" aria-valuemin="0" aria-valuemax="12" aria-valuenow="10"></div>
+        </div>
+        <svg class="spojky" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="zastavky"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sekce" id="areal" aria-labelledby="h-areal">
+  <div class="wrap areal">
+    <div class="rv">
+      <h2 id="h-areal">Areál, o který se členové starají sami</h2>
+      <p class="lead">Příjemný sportovní areál v klidném prostředí v blízkosti Labe. Na zhruba 10&nbsp;000&nbsp;m² jsou kromě dvorců převážně zelené plochy a vlastní budova klubovny. Celý areál udržují členové vlastními silami.</p>
+      <dl class="spec">
+        <div><dt>Dvorce</dt><dd>6 antukových, z toho 4 po rekonstrukci v roce 2025</dd></div>
+        <div><dt>Mládež</dt><dd>Tréninková zeď a kurt pro malé tenisty (Tréninkové centrum pro mládež)</dd></div>
+        <div><dt>Klubovna</dt><dd>Sociální zařízení, občerstvení a venkovní posezení</dd></div>
+        <div><dt>Další sporty</dt><dd>Kurty na volejbal a beachvolejbal</dd></div>
+        <div><dt>Cesta</dt><dd>Z Prahy cca 30&nbsp;minut, parkování přímo v areálu</dd></div>
+      </dl>
+    </div>
+    <div class="fota rv">
+      <figure class="velka">
+        <img src="assets/foto/letecky-labe-3.jpg" width="913" height="580" loading="lazy" alt="Letecký pohled: Labe nahoře, antukové dvorce klubu uprostřed, vpravo dole fotbalový stadion">
+        <figcaption>Dvorce uprostřed, za nimi Labe</figcaption>
+      </figure>
+      <figure class="mala">
+        <img src="assets/foto/minikurt-zed.jpg" width="1389" height="1042" loading="lazy" alt="Malý dvorec u tréninkové zdi, v popředí strom" style="object-position:60% 50%">
+        <figcaption>Tréninková zeď</figcaption>
+      </figure>
+      <figure class="mala">
+        <img src="assets/foto/minikurt.jpg" width="1389" height="1042" loading="lazy" alt="Červený kurt pro malé tenisty s bílými čarami, vzadu tréninková zeď" style="object-position:20% 40%">
+        <figcaption>Kurt pro malé tenisty</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sekce" id="cenik" aria-labelledby="h-cenik">
+  <div class="wrap">
+    <div class="hlavicka-sekce rv">
+      <h2 id="h-cenik">Ceník a členství</h2>
+      <p class="lead">Ceník schválila valná hromada 13.&nbsp;12.&nbsp;2014. Příspěvky lze na požádání rozložit: nejméně 50&nbsp;% před hrou, 50&nbsp;% do 30.&nbsp;6.</p>
+    </div>
+    <div class="cenik">
+      <div class="hodina rv">
+        <p class="hodina__cislo"><b>240</b><span>Kč / hodina</span></p>
+        <p class="hodina__txt">Pronájem dvorce pro nečleny, placeno před hrou.</p>
+        <dl class="dalsi">
+          <div><dt>Pronájem klubovny<small>pro nečleny a firmy</small></dt><dd>2&nbsp;000&nbsp;Kč <span>/ den</span></dd></div>
+          <div><dt>Skříňka malá</dt><dd>250&nbsp;Kč <span>/ rok</span></dd></div>
+          <div><dt>Skříňka velká</dt><dd>350&nbsp;Kč <span>/ rok</span></dd></div>
+        </dl>
+      </div>
+      <div class="rv">
+        <table class="matice">
+          <caption class="sr">Členské příspěvky na rok v korunách</caption>
+          <thead>
+            <tr><th scope="col">Členské příspěvky</th><th scope="col">Rozsah</th><th scope="col">Odečet za brigády</th><th scope="col" class="kc">Kč / rok</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Dospělí</th><td class="roz">celodenní hraní</td><td class="brig">až −1&nbsp;000</td><td class="kc">5&nbsp;000</td></tr>
+            <tr><th scope="row">Dospělí</th><td class="roz">dopolední hraní</td><td class="brig">až −1&nbsp;000</td><td class="kc">2&nbsp;500</td></tr>
+            <tr><th scope="row">Studenti, mládež do 18&nbsp;let</th><td class="roz nic">—</td><td class="brig">až −1&nbsp;000</td><td class="kc">3&nbsp;500</td></tr>
+            <tr><th scope="row">Děti, mládež do 15&nbsp;let</th><td class="roz nic">—</td><td class="brig">neplatí</td><td class="kc">1&nbsp;500</td></tr>
+            <tr><th scope="row">Hráči školičky do 10&nbsp;let</th><td class="roz nic">—</td><td class="brig">neplatí</td><td class="kc">100</td></tr>
+            <tr><th scope="row">Nehrající členové</th><td class="roz">základní příspěvek; při opakované hře doplatek 1&nbsp;000&nbsp;Kč, odehrané hodiny podle ceníku</td><td class="brig">neplatí</td><td class="kc">500</td></tr>
+            <tr class="vstup"><th scope="row">Vstup do klubu, nové členství</th><td class="roz">zahrnuje příspěvek i brigády za první rok</td><td class="brig nic">—</td><td class="kc">7&nbsp;000</td></tr>
+          </tbody>
+        </table>
+        <p class="cenik__pozn">Brigádní hodiny: každá odpracovaná hodina sníží příspěvek o 100&nbsp;Kč, nejvýš 10&nbsp;hodin (1&nbsp;000&nbsp;Kč). Mládež do 15&nbsp;let brigády dělat nemusí.</p>
+        <p class="cenik__plati">Ceník platí od 1.&nbsp;1.&nbsp;2015.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sekce sekce--s1" id="akademie" aria-labelledby="h-akad">
+  <div class="wrap">
+    <div class="akad">
+      <div class="rv">
+        <h2 id="h-akad">Tenisová akademie Čelákovice</h2>
+        <p class="lead">Tenisové tréninky pro aktivní děti. Sezóna říjen 2026 – červen 2027, od 18.&nbsp;10.&nbsp;2026 se trénuje v hale podle zimního rozvrhu.</p>
+        <p class="pozn">Přihlášky online v systému tenisové školy, nevratná záloha 1&nbsp;500&nbsp;Kč.</p>
+        <div class="akad__odkazy">
+          <a class="btn btn--obrys" href="https://www.tenisovaakademiecelakovice.cz/" target="_blank" rel="noopener">Web akademie <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11 11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+          <div class="tel"><span>Telefon akademie</span><a href="tel:+420777341070">777&nbsp;341&nbsp;070</a></div>
+        </div>
+      </div>
+      <div class="treneri rv">
+        <article class="trener"><p class="trener__kval">Trenérka II. třídy ČTS</p><h3>Mgr. Barbora Suková</h3><p>Dlouholetá extraligová hráčka TK Neride.</p></article>
+        <article class="trener"><p class="trener__kval">Trenér II. třídy ČTS</p><h3>Luboš Soukup</h3><p>Závodní hráč A‑týmu TK Čelákovice.</p></article>
+        <article class="trener"><p class="trener__kval">Trenér II. třídy ČTS</p><h3>Jiří Šuráň</h3><p>Závodní hráč A‑týmu TK Čelákovice.</p></article>
+        <article class="trener"><p class="trener__kval">Trenér III. třídy ČTS</p><h3>Štěpán Fišer</h3><p>Závodní hráč A‑týmu TK Čelákovice.</p></article>
+      </div>
+    </div>
+
+    <div class="kempy" id="kempy">
+      <div class="kempy__hl rv">
+        <h3>Letní tenisové kempy</h3>
+        <p>Pro hráče všech věkových kategorií, kteří mají zájem o zlepšení své tenisové hry o prázdninách. V létě 2026 byly vypsané čtyři termíny, termíny na rok 2027 zatím nejsou zveřejněné.</p>
+      </div>
+      <ol class="dlazdice rv">
+        <li><span class="k">Kemp 1</span><span class="d">13.–17.&nbsp;7.</span><span class="r">2026 · Po–Pá 9:00–16:00</span></li>
+        <li><span class="k">Kemp 2</span><span class="d">27.–31.&nbsp;7.</span><span class="r">2026 · Po–Pá 9:00–16:00</span></li>
+        <li><span class="k">Kemp 3</span><span class="d">3.–7.&nbsp;8.</span><span class="r">2026 · Po–Pá 9:00–16:00</span></li>
+        <li><span class="k">Kemp 4</span><span class="d">17.–21.&nbsp;8.</span><span class="r">2026 · Po–Pá 9:00–16:00</span></li>
+      </ol>
+      <div class="kempy__info rv">
+        <dl>
+          <div><dt>Cena</dt><dd><b>4&nbsp;200&nbsp;Kč</b> / osoba (1&nbsp;200&nbsp;Kč / den)</dd></div>
+          <div><dt>Program</dt><dd>Výuka tenisu (technická, taktická výuka a zápasy), kondiční příprava</dd></div>
+          <div><dt>Dohled</dt><dd>Trenéři s platnou kvalifikací ČTS</dd></div>
+          <div><dt>Kontakt</dt><dd>Luboš Soukup · <a href="mailto:lubossoukup@seznam.cz">lubossoukup@seznam.cz</a> · <a href="tel:+420777341070">777&nbsp;341&nbsp;070</a></dd></div>
+          <div><dt>Leták</dt><dd><a href="https://www.tkcelakovice.cz/images/ostatni/Tenisove_kempy_letak_A4_2601_01_TISK.pdf" target="_blank" rel="noopener">Tenisové kempy 2026 (PDF)</a></dd></div>
+        </dl>
+        <figure>
+          <img src="assets/foto/galerie/tabor-3899.jpg" width="1008" height="756" loading="lazy" alt="Děti trénují na antukových dvorcích klubu">
+          <figcaption>Trénink dětí na antuce</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sekce" id="klub" aria-labelledby="h-klub">
+  <div class="wrap klub">
+    <div class="klub__znak rv">
+      <img src="assets/logo/tkc-logo.svg" width="404" height="300" loading="lazy" alt="Oficiální logo TK Čelákovice: oranžový ovál s monogramem TK, míčkem a nápisem Čelákovice">
+    </div>
+    <div>
+      <h2 id="h-klub" class="rv">Od LTK 1930 po dnešní spolek</h2>
+      <div class="klub__sloupce rv">
+        <p>Klub byl založen 6.&nbsp;července 1930 jako Tenisový klub LTK 1930. V letech 1956–1991 existoval pod názvem SPARTAK Čelákovice. Dnešní spolek navazuje na tradici prvorepublikového klubu a hlásí se k tradicím tělovýchovné jednoty a sportu v Čelákovicích. V roce 2030 klub oslaví 100&nbsp;let.</p>
+        <p>Klub se snaží vychovávat nové generace tenistů a celkově žije sportovně‑společenským životem. Členové se pravidelně scházejí pro sport, pobavení, ale i proto, aby vlastními silami udržovali celý areál. Každoročně klub pořádá několik turnajů nejen pro mládež.</p>
+      </div>
+      <div class="memorial rv">
+        <h3>Memoriál Ládi Pánka</h3>
+        <p>Klubový turnaj členů ve čtyřhře. Vzpomínka na jednoho z nestorů čelákovického sportu, dlouholetého aktivního hráče a správce klubu, „který tenisovým klubem žil“.</p>
+      </div>
+      <h3 class="vybor__h rv">Výbor 2024–2028</h3>
+      <dl class="vybor rv">
+        <div><dt>Předseda</dt><dd>Miroslav Kodera</dd></div>
+        <div><dt>Členové výboru</dt><dd>Zuzana Vavrošová, Barbora Suková, Jaroslav Uher, Aleš Rikl, Zbyněk Fišer, Luboš Soukup</dd></div>
+        <div><dt>Revizní komise</dt><dd>Táňa Hozmanová, Irena Götzlová, Karolína Šuráňová</dd></div>
+      </dl>
+      <div class="oslavy rv">
+        <figure style="margin:0"><img src="assets/foto/galerie/80let-084.jpg" width="704" height="528" loading="lazy" alt="Oslavy 80 let: dvorce u klubovny plné diváků"></figure>
+        <figure style="margin:0"><img src="assets/foto/galerie/80let-img_8375.jpg" width="778" height="518" loading="lazy" alt="Oslavy 80 let: exhibiční zápas, hráč u sítě"></figure>
+        <figure style="margin:0"><img src="assets/foto/galerie/80let-e1242657.jpg" width="912" height="684" loading="lazy" alt="Oslavy 80 let: úprava dvorce koštětem"></figure>
+        <figcaption>Oslavy 80 let klubu, 2010</figcaption>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sekce sekce--s1" id="aktuality" aria-labelledby="h-akt">
+  <div class="wrap">
+    <h2 id="h-akt" class="rv">Aktuality</h2>
+    <ol class="zpravy rv">
+      <li><time datetime="2026-10-18">18.&nbsp;10.&nbsp;2026 – 2.&nbsp;4.&nbsp;2027</time><h3>Zimní tenisová sezóna</h3><p>Venkovní antuka odpočívá, akademie trénuje v hale.</p></li>
+      <li><time datetime="2026-09-16">16.&nbsp;9.&nbsp;2026</time><h3>Tenis v září a říjnu</h3><p>Akademie: venku do 16.&nbsp;10., od 18.&nbsp;10. v hale podle nového rozvrhu.</p></li>
+      <li><time datetime="2026-02-23">23.&nbsp;2.&nbsp;2026</time><h3>Termíny letních kempů 2026</h3><p>Čtyři letní termíny, Po–Pá 9:00–16:00. <a href="#kempy">Termíny a cena</a></p></li>
+      <li><time datetime="2025">2025</time><h3>Rekonstrukce 4&nbsp;antukových dvorců a sociálního zařízení dokončena</h3><p>S podporou Národní sportovní agentury a Města Čelákovice. <a href="#rok-2025">Průběh na fotkách</a></p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sekce" id="partneri" aria-labelledby="h-par">
+  <div class="wrap partneri">
+    <div class="rv">
+      <h2 id="h-par">Partneři</h2>
+      <p class="lead">Klub hospodaří z příspěvků členů. Finančně pomáhá Město Čelákovice a pár dalších sponzorů, kterých si klub nesmírně váží.</p>
+    </div>
+    <div class="karty rv">
+      <figure>
+        <div class="karta"><img src="assets/partneri/mesto-celakovice.jpg" width="379" height="489" loading="lazy" alt="Znak města Čelákovice s nápisem Náš spolek finančně podporuje Město Čelákovice"></div>
+        <figcaption><b>Město Čelákovice</b>Finanční podpora spolku a individuální dotace na rekonstrukci 2025.</figcaption>
+      </figure>
+      <figure>
+        <div class="karta"><img src="assets/partneri/nsa-muj-klub-2026.jpg" width="2584" height="1444" loading="lazy" alt="Logo Národní sportovní agentury s textem: Neinvestiční dotaci Můj klub 2026 našemu spolku poskytla"></div>
+        <figcaption><b>Národní sportovní agentura</b>Neinvestiční dotace „Můj klub 2026“ a investiční dotace na rekonstrukci 2025.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sekce sekce--s1" id="kontakt" aria-labelledby="h-kon">
+  <div class="wrap kontakt">
+    <div class="rv">
+      <h2 id="h-kon">Kontakt</h2>
+      <p class="kontakt__adr">TK Čelákovice<br>U Kapličky 1705<br>250&nbsp;88 Čelákovice</p>
+      <div class="kontakt__mapy">
+        <a class="btn btn--obrys" href="https://mapy.com/s/jemusazura" target="_blank" rel="noopener">Mapy.cz <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11 11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <a class="btn btn--obrys" href="https://www.google.com/maps/search/?api=1&amp;query=U+Kapli%C4%8Dky+1705%2C+250+88+%C4%8Cel%C3%A1kovice" target="_blank" rel="noopener">Google Maps <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11 11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      </div>
+      <dl class="kontakt__radky">
+        <div><dt>Telefon</dt><dd><a href="tel:+420723025880">723&nbsp;025&nbsp;880</a><br><a href="tel:+420728118923">728&nbsp;118&nbsp;923</a></dd></div>
+        <div><dt>E-mail</dt><dd><a href="mailto:info@tkcelakovice.cz">info@tkcelakovice.cz</a></dd></div>
+        <div><dt>Facebook</dt><dd class="txt"><a href="https://www.facebook.com/TK-%C4%8Cel%C3%A1kovicespolek-1713894322226848/" target="_blank" rel="noopener">TK Čelákovice, spolek</a></dd></div>
+      </dl>
+    </div>
+    <figure class="kontakt__foto rv">
+      <img src="assets/foto/letecky-areal-1.jpg" width="963" height="641" loading="lazy" alt="Areál TK Čelákovice shora, dvorce mezi vilami a zelení">
+      <figcaption>Areál shora, mezi vilami</figcaption>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<footer class="pata">
+  <div class="wrap">
+    <div class="pata__grid">
+      <img src="assets/logo/tkc-logo.svg" width="404" height="300" loading="lazy" alt="Logo TK Čelákovice">
+      <div><p class="pata__jm">Tenisový klub Čelákovice, spolek</p><p>U Kapličky 1705<br>250&nbsp;88 Čelákovice</p></div>
+      <div><p><a href="tel:+420723025880">723&nbsp;025&nbsp;880</a> / <a href="tel:+420728118923">728&nbsp;118&nbsp;923</a><br><a href="mailto:info@tkcelakovice.cz">info@tkcelakovice.cz</a></p></div>
+      <div><p>IČO 18622879<br>Česká spořitelna, č. ú. 0424476379/0800</p></div>
+    </div>
+    <div class="pata__copy">
+      <span>© 2026 Tenisový klub Čelákovice, spolek</span>
+      <span><a href="https://www.rogeronline.cz/v2/index.php?klub=75" target="_blank" rel="noopener">Rezervace online</a> · <a href="https://www.tkcelakovice.cz/images/ostatni/hraci_rad_od_2015.pdf" target="_blank" rel="noopener">Hrací řád (PDF)</a> · <a href="https://www.facebook.com/TK-%C4%8Cel%C3%A1kovicespolek-1713894322226848/" target="_blank" rel="noopener">Facebook</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var d = document, html = d.documentElement;
+  html.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nezlomitelné mezery po jednopísmenných předložkách a spojkách */
+  var RE = /(^|[\s („])([KkSsVvZzOoUuAaIi])\s+(?=\S)/g;
+  function cz(s) { return s.replace(RE, '$1$2 ').replace(RE, '$1$2 '); }
+  var tw = d.createTreeWalker(d.body, NodeFilter.SHOW_TEXT, {
+    acceptNode: function (n) { return /^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName) ? 2 : 1; }
+  });
+  var uzly = []; while (tw.nextNode()) uzly.push(tw.currentNode);
+  uzly.forEach(function (n) { var t = cz(n.nodeValue); if (t !== n.nodeValue) n.nodeValue = t; });
+
+  /* hlavička */
+  var hl = d.getElementById('hlava');
+  function sc() { hl.classList.toggle('scrolled', window.scrollY > 10); }
+  window.addEventListener('scroll', sc, { passive: true }); sc();
+
+  /* mobilní menu */
+  var mb = d.querySelector('.menu-btn'), mm = d.getElementById('mmenu'), mbt = mb.querySelector('.menu-btn__t');
+  function menu(open) {
+    mb.setAttribute('aria-expanded', String(open));
+    mbt.textContent = open ? 'Zavřít' : 'Menu';
+    mm.classList.toggle('open', open);
+    html.classList.toggle('zamek', open);
+    html.classList.toggle('menu-otevrene', open);
+  }
+  mb.addEventListener('click', function () { menu(mb.getAttribute('aria-expanded') !== 'true'); });
+  mm.addEventListener('click', function (e) { if (e.target.closest('a')) menu(false); });
+  d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mm.classList.contains('open')) { menu(false); mb.focus(); } });
+  window.matchMedia('(min-width: 1081px)').addEventListener('change', function (e) { if (e.matches) menu(false); });
+
+  /* odkrývání při rolování */
+  var rv = d.querySelectorAll('.rv');
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.01 });
+    rv.forEach(function (el) { io.observe(el); });
+  } else rv.forEach(function (el) { el.classList.add('in'); });
+
+  /* časová osa rekonstrukce 2025 */
+  var R = d.getElementById('r25');
+  if (!R) return;
+  var DIR = 'assets/foto/rekonstrukce/';
+  var S = [
+    { d: '2025-03-20', f: '2025-03-20-a.jpg', w: 1800, h: 1350, t: 'Vybourané staré sociální zařízení.', p: '50% 55%' },
+    { d: '2025-06-04', f: '2025-06-04.jpg', w: 1800, h: 1013, t: 'Nakladač na dvorcích, začátek prací.' },
+    { d: '2025-06-05', f: '2025-06-05.jpg', w: 1800, h: 1013, t: 'Bagr odstraňuje starý povrch u plotu.' },
+    { d: '2025-06-06', f: '2025-06-06.jpg', w: 1800, h: 1013, t: 'Pohled přes dvorce od lavice s posezením.' },
+    { d: '2025-06-16', f: '2025-06-16.jpg', w: 1800, h: 1013, t: 'Odkrytý podklad dvorců a stroje.' },
+    { d: '2025-06-25', f: '2025-06-25-a.jpg', w: 1800, h: 1350, t: 'Štěrkový podklad a cesta lemovaná levandulí.', p: '50% 68%' },
+    { d: '2025-07-04', f: '2025-07-04.jpg', w: 1800, h: 1013, t: 'Podloží a stroje u klubovny.' },
+    { d: '2025-07-29', f: '2025-07-29.jpg', w: 1800, h: 1013, t: 'Výkopy a podklad.' },
+    { d: '2025-09-02', f: '2025-09-02-a.jpg', w: 1800, h: 1013, t: 'Rozprostírání antuky.' },
+    { d: '2025-09-04', f: '2025-09-04.jpg', w: 1800, h: 1013, t: 'Dokončování povrchu, pytle s antukou.' },
+    { d: '2025-09-08', f: '2025-09-08.jpg', w: 1800, h: 1013, t: 'Hotové dvorce s novými čarami.' },
+    { d: '2025-10-15', f: '2025-10-15-b.jpg', w: 1800, h: 1350, t: 'Nové sociální zařízení.' },
+    { d: null, f: '../dron-klubovna.jpg', w: 2600, h: 1463, t: 'Areál po rekonstrukci: oplocený blok čtyř nových dvorců s ostrými čarami.', p: '85% 50%', foto: 'David Holub' }
+  ];
+  var N = S.length, CEL = 209, KON_OSY = 88, NB = ' ', T0 = Date.UTC(2025, 2, 20);
+  function rozloz(s) { return s.split('-').map(Number); }
+  function den(s) { var a = rozloz(s); return Math.round((Date.UTC(a[0], a[1] - 1, a[2]) - T0) / 864e5); }
+  function fmt(s) { var a = rozloz(s); return a[2] + '.' + NB + a[1] + '.' + NB + a[0]; }
+  function fmtK(s) { var a = rozloz(s); return a[2] + '.' + NB + a[1] + '.'; }
+  function popisek(s) { return s.d ? fmt(s.d) : 'Po rekonstrukci'; }
+  var X = S.map(function (s) { return s.d ? den(s.d) / CEL * KON_OSY : 100; });
+
+  var scena = R.querySelector('.scena'), kolej = R.querySelector('.kolej'), fill = R.querySelector('.kolej__fill'),
+      jez = R.querySelector('.jezdec'), mes = R.querySelector('.osa__mesice'), spoj = R.querySelector('.spojky'),
+      zast = R.querySelector('.zastavky'), eTxt = R.querySelector('.panel__txt'),
+      eD = d.getElementById('r25-datum'), eN = d.getElementById('r25-den'), eP = d.getElementById('r25-popis'),
+      eF = d.getElementById('r25-foto'), bPrev = d.getElementById('r25-prev'), bNext = d.getElementById('r25-next'),
+      bStop = d.getElementById('r25-stop'), eBar = R.querySelector('.scena__bar i');
+
+  var imgs = S.map(function (s) {
+    var im = d.createElement('img');
+    im.loading = 'lazy'; im.decoding = 'async'; im.width = s.w; im.height = s.h;
+    im.alt = s.d ? 'Rekonstrukce dvorců, ' + fmt(s.d) + ': ' + s.t : 'Areál po rekonstrukci z dronu, vlevo dole klubovna s posezením';
+    if (s.p) im.style.objectPosition = s.p;
+    im.src = DIR + s.f;
+    scena.appendChild(im);
+    return im;
+  });
+
+  var MES = [['2025-03-20', 'březen', '3'], ['2025-04-01', 'duben', '4'], ['2025-05-01', 'květen', '5'], ['2025-06-01', 'červen', '6'],
+             ['2025-07-01', 'červenec', '7'], ['2025-08-01', 'srpen', '8'], ['2025-09-01', 'září', '9'], ['2025-10-01', 'říjen', '10']];
+  mes.innerHTML = MES.map(function (m) {
+    return '<span style="left:' + (den(m[0]) / CEL * KON_OSY) + '%"><span class="dl">' + m[1] + '</span><span class="kr">' + m[2] + '.</span></span>';
+  }).join('');
+
+  var ticks = S.map(function (s, i) {
+    var t = d.createElement('span'); t.className = 'kolej__tick'; t.style.left = X[i] + '%';
+    kolej.insertBefore(t, jez); return t;
+  });
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var lines = S.map(function (s, i) {
+    var l = d.createElementNS(SVGNS, 'line');
+    l.setAttribute('x1', X[i] * 10); l.setAttribute('y1', 0);
+    l.setAttribute('x2', (i + 0.5) / N * 1000); l.setAttribute('y2', 100);
+    l.setAttribute('vector-effect', 'non-scaling-stroke');
+    spoj.appendChild(l); return l;
+  });
+  var btns = S.map(function (s, i) {
+    var b = d.createElement('button'); b.type = 'button';
+    b.innerHTML = s.d ? fmtK(s.d) : 'Po<br>rekonstrukci';
+    b.setAttribute('aria-label', popisek(s) + ': ' + s.t);
+    b.addEventListener('click', function () { stop(); ukaz(i); });
+    zast.appendChild(b); return b;
+  });
+
+  var cur = -1, podT = 0;
+  function poloha(x) { fill.style.width = x + '%'; jez.style.left = x + '%'; }
+  function ukaz(i, tah) {
+    i = Math.max(0, Math.min(N - 1, i));
+    if (i === cur) { if (!tah) poloha(X[i]); return; }
+    var prev = cur; cur = i;
+    imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); im.classList.toggle('pod', k === prev); });
+    clearTimeout(podT);
+    podT = setTimeout(function () { imgs.forEach(function (im, k) { if (k !== cur) im.classList.remove('pod'); }); }, 760);
+    ticks.forEach(function (t, k) { t.classList.toggle('prosel', k <= i); t.classList.toggle('akt', k === i); });
+    lines.forEach(function (l, k) { l.classList.toggle('akt', k === i); });
+    btns.forEach(function (b, k) { b.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+    var s = S[i];
+    eD.textContent = popisek(s);
+    eN.innerHTML = s.d ? 'den <b>' + den(s.d) + '</b> ze ' + CEL : 'záběr z dronu';
+    eP.textContent = cz(s.t);
+    eF.textContent = s.foto ? 'Foto: ' + s.foto : '';
+    if (!reduce) { eTxt.classList.remove('fade'); void eTxt.offsetWidth; eTxt.classList.add('fade'); }
+    bPrev.setAttribute('aria-disabled', String(i === 0));
+    bNext.setAttribute('aria-disabled', String(i === N - 1));
+    jez.setAttribute('aria-valuenow', i);
+    jez.setAttribute('aria-valuetext', popisek(s) + ': ' + s.t);
+    if (!tah) poloha(X[i]);
+  }
+
+  /* automatické přehrání: jednou, pomalu, skončí na 8. 9. */
+  var KON = S.findIndex(function (s) { return s.d === '2025-09-08'; });
+  var tim = null, hotovo = reduce, vidi = false, vidiSekci = false;
+  function bar() { eBar.style.animation = 'none'; void eBar.offsetWidth; eBar.style.animation = ''; }
+  function stop() { hotovo = true; if (tim) { clearInterval(tim); tim = null; } R.classList.remove('hraje'); }
+  function start() {
+    if (hotovo) return; hotovo = true;
+    R.classList.add('hraje'); bar();
+    tim = setInterval(function () {
+      if (!vidi) return;
+      ukaz(cur + 1);
+      if (cur >= KON) stop(); else bar();
+    }, 2800);
+  }
+  bStop.addEventListener('click', function () { stop(); bNext.focus(); });
+
+  /* tažení jezdce (myš i dotyk) */
+  function proc(e) { var r = kolej.getBoundingClientRect(); return Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100)); }
+  function nejbl(x) { var b = 0, m = 1e9; X.forEach(function (v, k) { var dd = Math.abs(v - x); if (dd < m) { m = dd; b = k; } }); return b; }
+  kolej.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    stop(); e.preventDefault();
+    try { kolej.setPointerCapture(e.pointerId); } catch (er) {}
+    R.classList.add('tahne'); jez.focus({ preventScroll: true });
+    function mv(ev) { var x = proc(ev); poloha(x); ukaz(nejbl(x), true); }
+    function up() {
+      R.classList.remove('tahne'); poloha(X[cur]);
+      kolej.removeEventListener('pointermove', mv); kolej.removeEventListener('pointerup', up); kolej.removeEventListener('pointercancel', up);
+    }
+    mv(e);
+    kolej.addEventListener('pointermove', mv); kolej.addEventListener('pointerup', up); kolej.addEventListener('pointercancel', up);
+  });
+
+  /* tlačítka a klávesnice */
+  function krok(k) { stop(); ukaz(cur + k); }
+  bPrev.addEventListener('click', function () { krok(-1); });
+  bNext.addEventListener('click', function () { krok(1); });
+  R.addEventListener('focusin', function (e) { if (e.target !== bStop) stop(); });
+  d.addEventListener('keydown', function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey || mm.classList.contains('open')) return;
+    var a = d.activeElement, uvnitr = R.contains(a);
+    if (!uvnitr && !vidiSekci) return;
+    if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return;
+    var k = 0;
+    if (e.key === 'ArrowRight' || (a === jez && e.key === 'ArrowUp')) k = 1;
+    else if (e.key === 'ArrowLeft' || (a === jez && e.key === 'ArrowDown')) k = -1;
+    else if (uvnitr && (e.key === 'Home' || e.key === 'End')) { e.preventDefault(); stop(); ukaz(e.key === 'Home' ? 0 : N - 1); return; }
+    if (!k) return;
+    e.preventDefault(); krok(k);
+  });
+
+  ukaz(reduce ? KON : 0);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { vidi = es[0].isIntersecting; if (vidi) start(); }, { threshold: 0.5 }).observe(scena);
+    new IntersectionObserver(function (es) { vidiSekci = es[0].isIntersecting; }, { threshold: 0.3 }).observe(R);
+  }
+})();
+</script>
+</body>
+</html>
